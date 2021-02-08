@@ -1,10 +1,6 @@
 import * as React from "react";
 import { Button, ImageBackground, StyleSheet } from "react-native";
 import { Text, View } from "../components/Themed";
-import {
-  useFonts,
-  PressStart2P_400Regular,
-} from "@expo-google-fonts/press-start-2p";
 import Colors from "../constants/Colors";
 import { getRandomCharacter } from "../Api";
 import { useState } from "react";
@@ -15,10 +11,6 @@ import { useEffect } from "react";
 // };
 
 export default function HomeScreen() {
-  let [fontsLoaded] = useFonts({
-    PressStart2P_400Regular,
-  });
-
   const [charInfo, setCharInfo] = useState({
     name: "",
     status: "",
@@ -26,35 +18,43 @@ export default function HomeScreen() {
     imageUrl: {},
   });
 
-  useEffect(() => {
-    const getImage = async () => {
+  const getImage = async () => {
+    let {
+      data: { image, status, name, species },
+    } = await getRandomCharacter();
+
+    setCharInfo({
+      name,
+      status,
+      species,
+      imageUrl: { uri: image },
+    });
+    setInterval(async () => {
       const {
         data: { image, status, name, species },
       } = await getRandomCharacter();
-
       setCharInfo({
         name,
         status,
         species,
         imageUrl: { uri: image },
       });
-    };
+    }, 6500);
+  };
+
+  useEffect(() => {
     getImage();
   }, []);
 
-  if (!fontsLoaded) {
-    return <Text>Loading font</Text>;
-  } else {
-    return (
-      <View style={styles.container}>
-        <ImageBackground source={charInfo.imageUrl} style={styles.image}>
-          <Text style={styles.text}>{charInfo.name}</Text>
-          <Text style={styles.text}>{charInfo.species}</Text>
-          <Text style={styles.text}>{charInfo.status}</Text>
-        </ImageBackground>
-      </View>
-    );
-  }
+  return (
+    <View style={styles.container}>
+      <ImageBackground source={charInfo.imageUrl} style={styles.image}>
+        <Text style={styles.text}>{charInfo.name}</Text>
+        <Text style={styles.text}>{charInfo.species}</Text>
+        <Text style={styles.text}>{charInfo.status}</Text>
+      </ImageBackground>
+    </View>
+  );
 }
 
 const styles = StyleSheet.create({

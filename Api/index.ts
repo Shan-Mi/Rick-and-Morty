@@ -10,6 +10,6 @@ export const getRandomCharacter = async () => {
   return await axios.get(`${URL}${CHAR}/${randomNum}`);
 };
 
-export const getOneCharacter = async () => {
-  
-}
+export const getOnePageChars = async (page: string) => {
+  return await axios.get(page);
+};

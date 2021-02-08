@@ -125,7 +125,13 @@ function CharNavigator() {
       <CharStack.Screen
         name="CharScreen"
         component={CharScreen}
-        options={{ headerTitle: () => null }}
+        options={{
+          headerTitle: "Characters",
+          headerTitleStyle: {
+            fontFamily: "PressStart2P_400Regular",
+            color: Colors.primary,
+          },
+        }}
       />
     </CharStack.Navigator>
   );
@@ -146,7 +152,13 @@ function SearchNavigator<SearchTabParamList>() {
       <SearchStack.Screen
         name="SearchScreen"
         component={SearchScreen}
-        options={{ headerTitle: () => null }}
+        options={{
+          headerTitle: "Search Result",
+          headerTitleStyle: {
+            fontFamily: "PressStart2P_400Regular",
+            color: Colors.primary,
+          },
+        }}
       />
     </SearchStack.Navigator>
   );

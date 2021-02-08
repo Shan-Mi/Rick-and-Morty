@@ -19,7 +19,6 @@ export default function HomeScreen() {
     PressStart2P_400Regular,
   });
 
-  const [imageUrl, setImageUrl] = useState({ uri: "" });
   const [charInfo, setCharInfo] = useState({
     name: "",
     status: "",
@@ -32,7 +31,7 @@ export default function HomeScreen() {
       const {
         data: { image, status, name, species },
       } = await getRandomCharacter();
-      setImageUrl({ uri: image });
+
       setCharInfo({
         name,
         status,

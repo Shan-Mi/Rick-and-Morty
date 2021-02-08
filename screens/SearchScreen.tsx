@@ -5,7 +5,6 @@ import { Text, View } from "../components/Themed";
 export default function SearchScreen() {
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>Search Screen</Text>
       <View
         style={styles.separator}
         lightColor="#eee"

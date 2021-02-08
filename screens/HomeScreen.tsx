@@ -1,28 +1,51 @@
 import * as React from "react";
-import { ImageBackground, StyleSheet } from "react-native";
+import { Button, ImageBackground, StyleSheet } from "react-native";
 import { Text, View } from "../components/Themed";
 import {
   useFonts,
   PressStart2P_400Regular,
 } from "@expo-google-fonts/press-start-2p";
 import Colors from "../constants/Colors";
+import { getRandomCharacter } from "../Api";
+import { useState } from "react";
+import { useEffect } from "react";
 
-const image = {
-  uri: "https://i.ibb.co/nn1Q1qt/Rickandmortyseason4dvdcover.jpg",
-};
+// const image = {
+//   uri: "https://i.ibb.co/nn1Q1qt/Rickandmortyseason4dvdcover.jpg",
+// };
 
 export default function HomeScreen() {
   let [fontsLoaded] = useFonts({
     PressStart2P_400Regular,
   });
 
+  const [imageUrl, setImageUrl] = useState({ uri: "" });
+
+  useEffect(() => {
+    const getImage = async () => {
+      const {
+        data: { image },
+      } = await getRandomCharacter();
+      setImageUrl({ uri: image });
+      console.log(imageUrl);
+    };
+    getImage();
+  }, []);
+
+  const handlePress = async () => {
+    const {
+      data: { image },
+    } = await getRandomCharacter();
+    console.log(image);
+  };
+
   if (!fontsLoaded) {
     return <Text>Loading font</Text>;
   } else {
     return (
       <View style={styles.container}>
-        <ImageBackground source={image} style={styles.image}>
-          <Text style={styles.title}>Rick and Morty</Text>
+        <ImageBackground source={imageUrl} style={styles.image}>
+          <Text style={styles.title}></Text>
         </ImageBackground>
       </View>
     );

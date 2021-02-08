@@ -24,7 +24,12 @@ export default function BottomTabNavigator() {
   return (
     <BottomTab.Navigator
       initialRouteName="Home"
-      tabBarOptions={{ activeTintColor: Colors[colorScheme].tint }}>
+      tabBarOptions={{
+        activeTintColor: Colors.primary,
+        style: {
+          backgroundColor: Colors.pink,
+        },
+      }}>
       <BottomTab.Screen
         name="Char"
         component={CharNavigator}
@@ -84,12 +89,21 @@ function HomeStackNavigator() {
     <HomeStack.Navigator
       screenOptions={{
         headerTitle: () => null,
-        headerStyle: { shadowColor: "transparent" },
+        headerStyle: {
+          shadowColor: "transparent",
+          backgroundColor: Colors.pink,
+        },
       }}>
       <HomeStack.Screen
         name="HomeScreen"
         component={HomeScreen}
-        options={{ headerTitle: () => null }}
+        options={{
+          headerTitle: "Rick and Morty",
+          headerTitleStyle: {
+            fontFamily: "PressStart2P_400Regular",
+            color: Colors.primary,
+          },
+        }}
       />
     </HomeStack.Navigator>
   );

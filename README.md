@@ -8,7 +8,7 @@
 
   get a random character
 
-- Character Screen:
+- Character Screen: (Try flatlist horizontal mode)
 
   pagination according to api's data, 20 chars per page, 34 pages in total, 671 chars in total.
 

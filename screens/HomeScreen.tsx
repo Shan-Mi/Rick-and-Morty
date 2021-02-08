@@ -20,32 +20,38 @@ export default function HomeScreen() {
   });
 
   const [imageUrl, setImageUrl] = useState({ uri: "" });
+  const [charInfo, setCharInfo] = useState({
+    name: "",
+    status: "",
+    species: "",
+    imageUrl: {},
+  });
 
   useEffect(() => {
     const getImage = async () => {
       const {
-        data: { image },
+        data: { image, status, name, species },
       } = await getRandomCharacter();
       setImageUrl({ uri: image });
-      console.log(imageUrl);
+      setCharInfo({
+        name,
+        status,
+        species,
+        imageUrl: { uri: image },
+      });
     };
     getImage();
   }, []);
-
-  const handlePress = async () => {
-    const {
-      data: { image },
-    } = await getRandomCharacter();
-    console.log(image);
-  };
 
   if (!fontsLoaded) {
     return <Text>Loading font</Text>;
   } else {
     return (
       <View style={styles.container}>
-        <ImageBackground source={imageUrl} style={styles.image}>
-          <Text style={styles.title}></Text>
+        <ImageBackground source={charInfo.imageUrl} style={styles.image}>
+          <Text style={styles.text}>{charInfo.name}</Text>
+          <Text style={styles.text}>{charInfo.species}</Text>
+          <Text style={styles.text}>{charInfo.status}</Text>
         </ImageBackground>
       </View>
     );
@@ -55,14 +61,11 @@ export default function HomeScreen() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    alignItems: "center",
-    justifyContent: "center",
-    backgroundColor: "red",
   },
   image: {
     flex: 1,
     resizeMode: "cover",
-    justifyContent: "center",
+    justifyContent: "flex-end",
     width: "100%",
   },
   title: {
@@ -76,5 +79,12 @@ const styles = StyleSheet.create({
     marginVertical: 30,
     height: 1,
     width: "80%",
+  },
+  text: {
+    fontSize: 24,
+    textAlign: "center",
+    fontFamily: "PressStart2P_400Regular",
+    color: Colors.primary,
+    paddingBottom: 20,
   },
 });

@@ -9,3 +9,7 @@ export const getRandomCharacter = async () => {
   const randomNum = Math.floor(Math.random() * 671 + 1);
   return await axios.get(`${URL}${CHAR}/${randomNum}`);
 };
+
+export const getOneCharacter = async () => {
+  
+}

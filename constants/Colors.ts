@@ -20,4 +20,5 @@ export default {
   secondary: "#69ad53",
   green: "#314e1c",
   pink: "#e4a788",
+  black: "#022b59",
 };

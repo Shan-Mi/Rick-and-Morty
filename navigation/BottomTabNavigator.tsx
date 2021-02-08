@@ -27,7 +27,8 @@ export default function BottomTabNavigator() {
       tabBarOptions={{
         activeTintColor: Colors.primary,
         style: {
-          backgroundColor: Colors.pink,
+          backgroundColor: Colors.black,
+          borderTopColor: "transparent",
         },
       }}>
       <BottomTab.Screen
@@ -91,7 +92,7 @@ function HomeStackNavigator() {
         headerTitle: () => null,
         headerStyle: {
           shadowColor: "transparent",
-          backgroundColor: Colors.pink,
+          backgroundColor: Colors.black,
         },
       }}>
       <HomeStack.Screen
@@ -116,7 +117,10 @@ function CharNavigator() {
     <CharStack.Navigator
       screenOptions={{
         headerTitle: () => null,
-        headerStyle: { shadowColor: "transparent" },
+        headerStyle: {
+          shadowColor: "transparent",
+          backgroundColor: Colors.black,
+        },
       }}>
       <CharStack.Screen
         name="CharScreen"
@@ -134,7 +138,10 @@ function SearchNavigator<SearchTabParamList>() {
     <SearchStack.Navigator
       screenOptions={{
         headerTitle: () => null,
-        headerStyle: { shadowColor: "transparent" },
+        headerStyle: {
+          shadowColor: "transparent",
+          backgroundColor: Colors.black,
+        },
       }}>
       <SearchStack.Screen
         name="SearchScreen"
